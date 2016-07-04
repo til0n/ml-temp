@@ -31,7 +31,9 @@ public abstract class CustomBlock extends ProcessingBlock implements IProcessing
 	 * @return the translation object for the requested OBI type
 	 */
 	public Object getTranslationObject(ObiType t){
-		return this.translations.get(t);
+		Object obj = this.translations.get(t);
+		System.out.println("POOPY: Dict" + obj.toString());
+		return obj;
 	}
 
 	public Map<ObiType, Object> getTranslations(){
