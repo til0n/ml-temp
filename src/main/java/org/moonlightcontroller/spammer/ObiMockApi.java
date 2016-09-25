@@ -1,4 +1,4 @@
-package org.moonlightcontroller.obimock;
+package org.moonlightcontroller.spammer;
 
 import java.util.ArrayList;
 import java.util.Arrays;

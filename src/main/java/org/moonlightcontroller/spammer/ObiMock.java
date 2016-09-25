@@ -1,4 +1,4 @@
-package org.moonlightcontroller.obimock;
+package org.moonlightcontroller.spammer;
 
 import org.eclipse.jetty.server.Server;
 import org.eclipse.jetty.servlet.ServletContextHandler;
@@ -53,18 +53,45 @@ public class ObiMock {
 		this.jetty = jettyServer;
 		try {
 			this.jetty.start();
-			this.jetty.join();
-		} finally {
+ 			// this.jetty.join();
+		} catch(Exception e){
 			this.jetty.destroy();
 		}
 	}
-
+	
 	public static void main(String[] args) {
-		ObiMock obi = new ObiMock(22, "127.0.0.1", 3637);
+		int obid = 22;
+		
+		int sleep = 0;
+		if (args.length > 0){
+		    try {
+		    	sleep = Integer.parseInt(args[0]);
+		    } catch (NumberFormatException e) {
+		        System.err.println("Argument" + args[0] + " must be a vaild port number.");
+		        System.exit(1);
+		    }
+		}
+		
+		ObiMock obi = new ObiMock(obid, "127.0.0.1", 3637);
 		try {
 			obi.start();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
+		ObiMockApi api = new ObiMockApi();
+		api.sayhello();
+		
+		Spammer sp = new Spammer("127.0.0.1", 3637, sleep);
+		sp.runSpammer();
+		
+		try {
+			obi.jetty.join();	
+		} catch(Exception e){
+			e.printStackTrace();
+		}finally {
+			obi.jetty.destroy();
+		}
+		
 	}
 }
