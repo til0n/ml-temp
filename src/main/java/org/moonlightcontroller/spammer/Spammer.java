@@ -34,7 +34,7 @@ public class Spammer {
 	private IMessage createAlert() {
 		int xid = this.fetchAndIncxid();
 		List<AlertMessage> alerts = new ArrayList<>();
-		alerts.add(new AlertMessage(1, System.currentTimeMillis(), "Alert from mock OBI", 1, "packet", "AlertChecker.Alert"));
+		alerts.add(new AlertMessage(1, System.nanoTime(), "Alert from mock OBI", 1, "packet", "AlertChecker.Alert"));
 		Alert alertMessage = new Alert(xid, ObiMock.getInstance().getdpid(), alerts);
 		return alertMessage;
 	}
