@@ -22,7 +22,7 @@ public class Main {
 		}
 		
 		IApplicationRegistry reg = new ApplicationRegistry();
-		reg.loadFromPath("/home/tilon/Workspace/Moonlight/ml-temp/src/main/resources/apps");
+		reg.loadFromPath("./apps");
 		
 		ITopologyManager topology = TopologyManager.getInstance();
 		MoonlightController mc = new MoonlightController(reg, topology, server_port);
