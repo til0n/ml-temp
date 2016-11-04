@@ -14,9 +14,9 @@ public class Spammer {
 	private SingleInstanceConnection client;
 	private int sleep;
 	
-	public Spammer(String serverIp, int serverPort, int sleep) {
+	public Spammer(String serverIp, int serverPort, int amountInMinute) {
 		this.client = new SingleInstanceConnection(serverIp, serverPort);
-		this.sleep = sleep;
+		this.sleep = (60*1000)/amountInMinute;
 	}
 	
 	public void runSpammer() {
